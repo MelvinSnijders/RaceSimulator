@@ -1,0 +1,59 @@
+Start Horizontal
+────
+ : :
+: : 
+────
+
+Start Vertical
+│" │
+│ "│
+│" │
+│ "│
+
+Finish Horizontal
+────
+  # 
+  # 
+────
+
+Finish Vertical
+│  │
+│  │
+│##│
+│  │
+
+Corner Vertical Left
+───╮ 
+   │
+   │
+╮  │
+
+Corner Vertical Right
+╭───
+│   
+│  
+│  ╭
+
+Corner Horizontal Right
+│  ╰
+│   
+│   
+╰───
+
+Corner Horizontal Left
+╯  │
+   │
+   │
+───╯
+
+Straight Horizontal
+────
+    
+    
+────
+
+Straight Vertical
+│  │
+│  │
+│  │
+│  │

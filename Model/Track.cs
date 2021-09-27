@@ -12,12 +12,18 @@ namespace Model
         public Track(string name, SectionTypes[] sections)
         {
             Name = name;
-            Sections = new LinkedList<Section>();
-            foreach(SectionTypes type in sections)
+            Sections = ConvertSectionArrayToList(sections);
+        }
+
+        private LinkedList<Section> ConvertSectionArrayToList(SectionTypes[] sections)
+        {
+            LinkedList<Section> sectionList = new LinkedList<Section>();
+            foreach (SectionTypes type in sections)
             {
                 Section section = new Section() { SectionType = type };
-                Sections.AddLast(section);
+                sectionList.AddLast(section);
             }
+            return sectionList;
         }
 
     }

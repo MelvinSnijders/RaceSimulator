@@ -12,11 +12,14 @@ namespace ConsoleApp
             Data.NextRace();
             Console.WriteLine(Data.CurrentRace.RaceTrack.Name);
 
+            Visualizer.DrawTrack(Data.CurrentRace.RaceTrack);
+
             for (; ; )
             {
                 Thread.Sleep(100);
             }
 
         }
+
     }
 }

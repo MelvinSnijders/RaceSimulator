@@ -30,7 +30,7 @@ namespace Controller
             SectionTypes[] zandvoortSections = { SectionTypes.StartGrid, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.Finish };
             Track zandvoortTrack = new Track("Zandvoort", zandvoortSections);
 
-            SectionTypes[] redBullRingSections = { SectionTypes.StartGrid, SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.Finish };
+            SectionTypes[] redBullRingSections = { SectionTypes.StartGrid, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.LeftCorner, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.Straight, SectionTypes.RightCorner, SectionTypes.LeftCorner, SectionTypes.RightCorner, SectionTypes.Finish };
             Track rbrTrack = new Track("Red Bull Ring", redBullRingSections);
 
             Competition.Tracks.Enqueue(zandvoortTrack);
