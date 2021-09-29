@@ -12,7 +12,7 @@ namespace ConsoleApp
             Data.NextRace();
             Console.WriteLine(Data.CurrentRace.RaceTrack.Name);
 
-            Visualizer.DrawTrack(Data.CurrentRace.RaceTrack);
+            Visualizer.DrawTrack(Data.CurrentRace, Data.CurrentRace.RaceTrack);
 
             for (; ; )
             {

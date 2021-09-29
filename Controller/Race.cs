@@ -18,17 +18,50 @@ namespace Controller
             RaceTrack = track;
             Participants = participants;
             _random = new Random(DateTime.Now.Millisecond);
+            _positions = new Dictionary<Section, SectionData>();
+            PlaceParticipants(track, participants);
         }
 
 
         public SectionData GetSectionData(Section section)
         {
-            SectionData sectionData = new SectionData();
+            SectionData sectionData;
             if (!_positions.TryGetValue(section, out sectionData))
             {
+                sectionData = new SectionData();
                 _positions.Add(section, sectionData);
+                
             }
             return sectionData;
+        }
+
+        public void PlaceParticipants(Track track, List<IParticipant> participants)
+        {
+            SectionData sectionData = new SectionData();
+            LinkedList<Section>.Enumerator enumerator = track.Sections.GetEnumerator();
+            enumerator.MoveNext();
+            foreach (IParticipant participant in participants)
+            {
+                if (sectionData.Right == null)
+                {
+                    sectionData.Right = participant;
+                } else if(sectionData.Left == null)
+                {
+                    sectionData.Left = participant;
+                } else
+                {
+
+                    _positions.Add(enumerator.Current, sectionData);
+                    sectionData = new SectionData();
+                    sectionData.Left = participant;
+                    enumerator.MoveNext();
+                    while (enumerator.Current.SectionType != SectionTypes.StartGrid)
+                    {
+                        enumerator.MoveNext();
+                    }
+                }
+            }
+            _positions.Add(enumerator.Current, sectionData);
         }
 
         public void RandomizeEquipment()

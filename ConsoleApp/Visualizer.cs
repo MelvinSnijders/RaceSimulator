@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ConsoleApp
     {
 
         #region graphics
-        private static string[] _startHorizontal = { "────", " : :", ": : ", "────" };
+        private static string[] _startHorizontal = { "────", ":1  ", "  :2", "────" };
         private static string[] _startVertical = { "│\" │", "│ \"│", "│\" │", "│ \"│" };
         private static string[] _finishHorizontal = { "────", "  # ", "  # ", "────", };
         private static string[] _finishVertical = { "|  |", "|  |", "|##|", "|  |" };
@@ -27,7 +28,23 @@ namespace ConsoleApp
 
         }
 
-        public static void DrawTrack(Track track)
+        public static string ReplaceStringWithParticipant(string input, IParticipant participant1, IParticipant participant2)
+        {
+            string replaced = input;
+            if (participant1 != null)
+            {
+                string par1 = participant1.Name.Substring(0, 1);
+                replaced = replaced.Replace("2", par1);
+            }
+            if (participant2 != null)
+            {
+                string par2 = participant2.Name.Substring(0, 1);
+                replaced = replaced.Replace("1", par2);
+            }
+            return replaced;
+        }
+
+        public static void DrawTrack(Race race, Track track)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
@@ -36,10 +53,16 @@ namespace ConsoleApp
             int currentDirection = 3;
             foreach (Section section in sections)
             {
+                SectionData sectionData = race.GetSectionData(section);
                 switch (section.SectionType)
                 {
                     case SectionTypes.StartGrid:
-                        DrawSection(_startHorizontal, _startVertical, currentDirection);
+                        string[] replacedStartHorizontal = new string[4];
+                        for(int i = 0; i < _startHorizontal.Length; i++)
+                        {
+                            replacedStartHorizontal[i] = ReplaceStringWithParticipant(_startHorizontal[i], sectionData.Left, sectionData.Right);
+                        }
+                        DrawSection(replacedStartHorizontal, _startVertical, currentDirection);
                         break;
                     case SectionTypes.Finish:
                         DrawSection(_finishHorizontal, _finishVertical, currentDirection);
@@ -128,8 +151,9 @@ namespace ConsoleApp
         {
             foreach (string section in sectionArray)
             {
-                Console.Write(section);
                 MoveCursor(-4, 1);
+                Console.Write(section);
+       
             }
         }
 
