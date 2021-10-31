@@ -48,7 +48,7 @@ namespace ConsoleApp
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            LinkedList <Section> sections = track.Sections;
+            LinkedList<Section> sections = track.Sections;
             Console.SetCursorPosition(100, 100);
             int currentDirection = 3;
             foreach (Section section in sections)
@@ -58,7 +58,7 @@ namespace ConsoleApp
                 {
                     case SectionTypes.StartGrid:
                         string[] replacedStartHorizontal = new string[4];
-                        for(int i = 0; i < _startHorizontal.Length; i++)
+                        for (int i = 0; i < _startHorizontal.Length; i++)
                         {
                             replacedStartHorizontal[i] = ReplaceStringWithParticipant(_startHorizontal[i], sectionData.Left, sectionData.Right);
                         }
@@ -153,14 +153,18 @@ namespace ConsoleApp
             {
                 MoveCursor(-4, 1);
                 Console.Write(section);
-       
+
             }
         }
 
         public static void MoveCursor(int x, int y)
         {
             Console.SetCursorPosition(Console.CursorLeft + x, Console.CursorTop + y);
+
         }
 
     }
+
+
+
 }
